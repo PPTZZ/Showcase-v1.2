@@ -1,15 +1,11 @@
+import Navbar from "./Navbar"
+
 
 export default function Profile() {
     return(
         <>
-            <nav>
-                <img src='./Icons/logo.svg' alt='Logo'/>
-                <img src='./Icons/bell icon.svg' alt='subscriibe bell'/>
-                <p>Log Out</p>
-            </nav>
+            <Navbar/>
             <div>
-                <div>
-                </div>
                 <div>
                     <div>
                         <img src='./Images/Profile Picture.svg'/>

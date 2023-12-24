@@ -1,38 +1,13 @@
+import { Paper, Typography } from "@mui/material"
+import { Button } from "@mui/material"
+
 
 export default function Login() {
     return(
-        <div>
-            <img/>
-            <div>
-                <h1>Login</h1>
-                <div>
-                    <label>
-                        Email</label>
-                    <br/>
-                    <input
-                        type='email'
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Password</label>
-                    <br/>
-                    <input
-                        type= 'password'
-                        required
-                    />
-                    <p>
-                        {"Forgot your password?"}
-                    </p>
-                </div>
-                    <input
-                        type='submit'
-                        value={'Login'}
-                    />
-                    <p>
-                        {"Don't have an account? Sign up"}
-                    </p>
-            </div>
-        </div>
+        <Paper>
+            <Typography variant="h3">Login</Typography>
+            <Button variant="contained">Click me!</Button>
+        </Paper>
+
     )
 }
