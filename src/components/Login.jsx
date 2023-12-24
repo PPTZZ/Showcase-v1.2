@@ -1,13 +1,49 @@
-import { Paper, Typography } from "@mui/material"
-import { Button } from "@mui/material"
+import { Typography, Button, Paper, Grid, TextField, makeStyles } from "@mui/material"
+import '../assets/styles/Login.css'
+
 
 
 export default function Login() {
+    
     return(
-        <Paper>
-            <Typography variant="h3">Login</Typography>
-            <Button variant="contained">Click me!</Button>
-        </Paper>
-
+        <>
+        <Grid container direction={'row-reverse'}>
+            <Grid item md={4} xs={12}>
+                <Paper sx={{ height:'100dvh'}}> 
+                    <Typography
+                        variant="h1"
+                        align="center"
+                    >
+                        Login
+                    </Typography>
+                    <form noValidate>
+                        <Typography>Email</Typography>
+                        <TextField
+                            id="email"
+                            variant="outlined"
+                            type="email"
+                            required
+                                sx={{
+                                width:'17rem',
+                                height:'2rem',
+                                }}
+                        />
+                    </form>
+                    <Button
+                        onClick={()=> console.log('Click!')}
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        sx={{
+                            width:'17rem',
+                            height:'2rem',
+                            }}
+                    >
+                        Login
+                    </Button>
+                </Paper>
+            </Grid>
+        </Grid>
+        </>
     )
 }

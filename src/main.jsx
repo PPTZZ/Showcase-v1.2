@@ -34,7 +34,11 @@ let theme = createTheme({
     h3:{
       fontSize:'1rem',
       color: "#656565"
-    }
+    },
+    button:{
+      textAlign: 'center',
+      textTransform:'none'
+    },
 
   },
   components: {
@@ -57,5 +61,5 @@ createRoot(document.getElementById('root')).render(
         <App />
       </BrowserRouter>
     </ThemeProvider>
-  </StrictMode>,
+  </StrictMode>
 )
