@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Profile from "./components/Profile";
-import Upload from "./components/Upload";
+import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
+import { Profile } from "./pages/Profile";
+import { Upload } from "./components/Upload";
 import './App.css'
 
-export default function App () {
+export const App = ()=> {
   return(
     <>
       <Routes>

@@ -1,4 +1,6 @@
-export default function Upload() {
+
+
+export const Upload = ()=> {
     return(
         <>
             <div >

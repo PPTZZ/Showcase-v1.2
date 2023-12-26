@@ -1,4 +1,4 @@
-export default function Edit(){
+export const Edit = ()=> {
     return(
         <>
             <div>

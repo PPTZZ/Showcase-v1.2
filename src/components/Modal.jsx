@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import '../assets/modal.css'
 
-export default function Modal({children}){
+export const Modal = ({children})=> {
     if(!open) {
         return null
     } else {
