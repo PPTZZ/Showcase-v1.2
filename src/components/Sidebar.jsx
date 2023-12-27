@@ -12,7 +12,7 @@ export const Sidebar = ()=>{
                             gap: 1,
                             alignItems:'center',
                             p:'1rem',
-                            height:'90dvh'
+                            height:'73dvh'
                         }}
                     >
                         <Box>
