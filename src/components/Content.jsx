@@ -1,4 +1,5 @@
-import { Paper, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material"
+import { Button, Paper, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material"
+import AddIcon from '@mui/icons-material/Add';
 import { useState } from "react"
 import { DisplayCard } from "./DisplayCard";
 
@@ -53,9 +54,36 @@ export const Content = ()=>{
                 height:'auto',
                 mt:'0.5rem',
                 ml:1.5,
-                p:'1rem'
+                p:'1rem',
             }}
         >
+            <Button
+                onClick={()=> console.log('Click!')}
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{
+                    width:'10rem',
+                    height:'2rem',
+                    mb:2,
+                    position:"relative",
+                    left:{
+                        xs:'55%',
+                        md:'90%'
+                    }
+                }}
+            >
+                <Typography
+                    sx={{
+                        display:'flex',
+                        justifyContent:'space-around',
+                        alignItems:'center'
+                    }}
+                >
+                    <AddIcon/>
+                    New Project
+                </Typography>
+            </Button>
             <DisplayCard/>
         </Paper>
         </>

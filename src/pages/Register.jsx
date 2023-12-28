@@ -1,21 +1,41 @@
 import { Typography, Button, Paper, Grid, TextField } from "@mui/material"
+import { Link } from "react-router-dom"
 
 
 
 export const Register = ()=> {
     return(
        <>
-        <Grid container direction={'row-reverse'}>
+        <Grid container direction={'row'}>
+            <Grid item md={8} xs={0}>
+                <img src="/Images/desktop.jpg" className="desktop"/>
+            </Grid>
             <Grid item md={4} xs={12}>
-                <Paper sx={{ height:'100dvh'}}> 
+                <Paper
+                    sx={{
+                        height:'100dvh',
+                        display:'flex',
+                        justifyContent:'center',
+                        alignItems:'center'
+                    }}> 
                     <form className="loginForm">
                         <Typography
                             variant="h1"
                             align="center"
+                            sx={{
+                                mb:15
+                            }}
                         >
                             Register
                         </Typography>
-                        <Typography>Name</Typography>
+                        <Typography
+                            sx={{
+                                alignSelf:'flex-start',
+                                mt:1
+                            }}
+                        >
+                            Name
+                        </Typography>
                         <TextField
                             id="name"
                             variant="outlined"
@@ -28,7 +48,14 @@ export const Register = ()=> {
                                 }
                                 }}
                         />
-                        <Typography>Email</Typography>
+                        <Typography
+                            sx={{
+                                alignSelf:'flex-start',
+                                mt:1
+                            }}
+                        >
+                            Email
+                        </Typography>
                         <TextField
                             id="email"
                             variant="outlined"
@@ -41,11 +68,18 @@ export const Register = ()=> {
                                 }
                                 }}
                         />
-                        <Typography>Password</Typography>
+                        <Typography
+                            sx={{
+                                alignSelf:'flex-start',
+                                mt:1
+                            }}
+                        >
+                            Password
+                        </Typography>
                         <TextField
                             id="password"
                             variant="outlined"
-                            type="email"
+                            type="password"
                             required
                                 sx={{
                                 width:'17rem',
@@ -62,11 +96,27 @@ export const Register = ()=> {
                             sx={{
                                 width:'17rem',
                                 height:'2rem',
+                                mt:1
                                 }}
                         >
-                            Login
+                            Register
                         </Button>
-                        <Typography>Already have an account? Login</Typography>
+                        <Link 
+                            to={'/'} 
+                            style={{
+                                alignSelf:'flex-start',
+                                textDecoration:'none'
+                            }}
+                        >
+                            <Typography
+                                color={'primary'}
+                                sx={{
+                                    mt:0.5
+                                }}
+                            >
+                                Already have an account? Login
+                            </Typography>
+                        </Link>
                     </form>
                 </Paper>
             </Grid>

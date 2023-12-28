@@ -1,4 +1,4 @@
-import { Typography, Button, Paper, Grid, TextField } from "@mui/material"
+import { Typography, Button, Paper, Grid, TextField,} from "@mui/material"
 import { Link } from "react-router-dom"
 
 
@@ -12,15 +12,31 @@ export const Login = ()=> {
                 <img src="/Images/desktop.jpg" className="desktop"/>
             </Grid>
             <Grid item md={4} xs={12}>
-                <Paper sx={{ height:'100dvh'}}> 
+                <Paper
+                    sx={{
+                        height:'100dvh',
+                        display:'flex',
+                        justifyContent:'center',
+                        alignItems:'center'
+                        }}
+                > 
                     <form className="loginForm">
                         <Typography
                             variant="h1"
                             align="center"
+                            sx={{
+                                mb:15
+                            }}
                         >
                             Login
                         </Typography>
-                        <Typography>Email</Typography>
+                        <Typography
+                            sx={{
+                                alignSelf:'flex-start'
+                            }}
+                        >
+                            Email
+                        </Typography>
                         <TextField
                             id="email"
                             variant="outlined"
@@ -33,11 +49,18 @@ export const Login = ()=> {
                                 }
                                 }}
                         />
-                        <Typography>Password</Typography>
+                        <Typography
+                            sx={{
+                                alignSelf:'flex-start',
+                                mt:1
+                            }}
+                        >
+                            Password
+                        </Typography>
                         <TextField
                             id="password"
                             variant="outlined"
-                            type="email"
+                            type={'password'}
                             required
                                 sx={{
                                 width:'17rem',
@@ -46,7 +69,16 @@ export const Login = ()=> {
                                 }
                                 }}
                         />
-                        <Typography>Forgot your password?</Typography>
+                        <Typography
+                            color={'primary'}
+                            sx={{
+                                alignSelf:'flex-end',
+                                mt:0.5,
+                                fontSize:15
+                            }}
+                        >
+                            Forgot your password?
+                        </Typography>
                         <Link
                             to={'/profile'}
                             style={{textDecoration:'none'}}
@@ -59,6 +91,7 @@ export const Login = ()=> {
                                 sx={{
                                     width:'17rem',
                                     height:'2rem',
+                                    mt:1
                                     }}
                             >
                             <Typography>
@@ -66,7 +99,22 @@ export const Login = ()=> {
                             </Typography>
                             </Button>
                         </Link>
-                        <Typography>Don’t have an account? Sign up</Typography>
+                        <Link
+                            to={'/register'}
+                            style={{
+                                textDecoration:'none',
+                                alignSelf:'flex-start',
+                            }}
+                        >
+                            <Typography
+                                color={'primary'}
+                                sx={{
+                                    mt:0.5
+                                }}
+                            >
+                                Don’t have an account? Sign up
+                            </Typography>
+                        </Link>
                     </form>
                 </Paper>
             </Grid>
