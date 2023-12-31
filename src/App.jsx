@@ -1,17 +1,19 @@
-import { Routes, Route } from "react-router-dom";
-import { Login } from "./pages/Login";
-import { Register } from "./pages/Register";
-import { Profile } from "./pages/Profile";
+// import { Routes, Route } from "react-router-dom";
+// import { Login } from "./pages/Login";
+// import { Register } from "./pages/Register";
+// import { Profile } from "./pages/Profile";
+import { Upload } from './components/Upload'
 import './App.css'
 
 export const App = ()=> {
   return(
     <>
-      <Routes>
+      <Upload/>
+      {/* <Routes>
           <Route path="/" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/profile" element={<Profile/>}/>
-      </Routes>
+      </Routes> */}
     </>
   )
 }
