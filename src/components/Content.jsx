@@ -1,8 +1,7 @@
-import { Button, Paper, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material"
-import AddIcon from '@mui/icons-material/Add';
-import { useState } from "react"
+import { Button, Paper, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
+import { AddIcon } from '@mui/icons-material';
+import { useState } from "react";
 import { DisplayCard } from "./DisplayCard";
-
 export const Content = ()=>{
 
     const [display, setDisplay] = useState('projects');
@@ -57,33 +56,32 @@ export const Content = ()=>{
                 p:'1rem',
             }}
         >
-            <Button
-                onClick={()=> console.log('Click!')}
-                type="submit"
-                variant="contained"
-                color="primary"
-                sx={{
-                    width:'10rem',
-                    height:'2rem',
-                    mb:2,
-                    position:"relative",
-                    left:{
-                        xs:'55%',
-                        md:'90%'
-                    }
-                }}
-            >
-                <Typography
+                <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
                     sx={{
-                        display:'flex',
-                        justifyContent:'space-around',
-                        alignItems:'center'
+                        width:'10rem',
+                        height:'2rem',
+                        mb:2,
+                        position:"relative",
+                        left:{
+                            xs:'55%',
+                            md:'90%'
+                        }
                     }}
                 >
-                    <AddIcon/>
-                    New Project
-                </Typography>
-            </Button>
+                    <Typography
+                        sx={{
+                            display:'flex',
+                            justifyContent:'space-around',
+                            alignItems:'center'
+                        }}
+                    >
+                        <AddIcon/>
+                        New Project
+                    </Typography>
+                </Button>
             <DisplayCard/>
         </Paper>
         </>

@@ -41,12 +41,12 @@ export const Register = ()=> {
                             variant="outlined"
                             type="email"
                             required
-                                sx={{
-                                width:'17rem',
-                                '& .MuiInputBase-root':{
-                                    height:'2rem'
-                                }
-                                }}
+                            sx={{
+                            width:'17rem',
+                            '& .MuiInputBase-root':{
+                                height:'2rem'
+                            }
+                            }}
                         />
                         <Typography
                             sx={{
@@ -61,12 +61,12 @@ export const Register = ()=> {
                             variant="outlined"
                             type="email"
                             required
-                                sx={{
-                                width:'17rem',
-                                '& .MuiInputBase-root':{
-                                    height:'2rem'
-                                }
-                                }}
+                            sx={{
+                            width:'17rem',
+                            '& .MuiInputBase-root':{
+                                height:'2rem'
+                            }
+                            }}
                         />
                         <Typography
                             sx={{
@@ -81,12 +81,12 @@ export const Register = ()=> {
                             variant="outlined"
                             type="password"
                             required
-                                sx={{
-                                width:'17rem',
-                                '& .MuiInputBase-root':{
-                                    height:'2rem'
-                                }
-                                }}
+                            sx={{
+                            width:'17rem',
+                            '& .MuiInputBase-root':{
+                                height:'2rem'
+                            }
+                            }}
                         />
                         <Button
                             onClick={()=> console.log('Click!')}
