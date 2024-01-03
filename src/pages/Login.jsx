@@ -1,8 +1,13 @@
 import { Typography, Button, Paper, Grid, TextField,} from "@mui/material"
+import { useState } from "react"
 import { Link } from "react-router-dom"
+import { ForgotPass } from "../components/ForgotPass";
+import { Modal } from '../components/Modal';
 
 
 export const Login = ()=> {
+
+    const [passModal, openPassModal] = useState(false);
 
     
     return(
@@ -70,15 +75,22 @@ export const Login = ()=> {
                                 }}
                         />
                         <Typography
+                            onClick={()=> openPassModal(true)}
                             color={'primary'}
                             sx={{
                                 alignSelf:'flex-end',
                                 mt:0.5,
-                                fontSize:15
+                                fontSize:15,
+                                ":hover":{
+                                    cursor:'pointer'
+                                }
                             }}
                         >
                             Forgot your password?
                         </Typography>
+                        <Modal open={passModal}>
+                            <ForgotPass onClose={()=> openPassModal(false)}/>
+                        </Modal>
                         <Link
                             to={'/profile'}
                             style={{textDecoration:'none'}}

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Button, FormLabel, Input, Paper, Stack, TextField, Typography } from "@mui/material"
 import { FileUploadOutlined } from "@mui/icons-material";
 
-export const Upload = ()=> {
+export const Upload = ({onClose})=> {
 
     const [file, setFile] = useState();
     const [preview, setPreview] = useState();
@@ -27,7 +27,15 @@ export const Upload = ()=> {
     }
 
     return(
-        <>
+        <div 
+            style={{
+                height:'100vh',
+                width:'100vw',
+                display:'flex',
+                justifyContent:'center',
+                alignItems:'center'
+            }}
+        >
             <Paper
                 sx={{
                     width:'31.5rem',
@@ -161,7 +169,7 @@ export const Upload = ()=> {
                     mt={5}
                 >
                     <Button 
-                        onClick={()=>console.log('Click!')}
+                        onClick={onClose}
                         variant="outlined"
                         color="primary"
                         sx={{
@@ -191,6 +199,6 @@ export const Upload = ()=> {
                     </Button>
                 </Stack>
             </Paper>
-        </>
+        </div>
     )     
 }

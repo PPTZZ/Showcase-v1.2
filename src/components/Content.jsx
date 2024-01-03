@@ -1,10 +1,14 @@
-import { Button, Paper, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
-import { AddIcon } from '@mui/icons-material';
+import { Button, Modal, Paper, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
+import { Add } from "@mui/icons-material";
 import { useState } from "react";
 import { DisplayCard } from "./DisplayCard";
+import { Upload } from './Upload';
+
+
 export const Content = ()=>{
 
     const [display, setDisplay] = useState('projects');
+    const [isOpen, setIsOpen] = useState(false)
 
     const handleDisplay = (event, newDisplay)=> {
         setDisplay(newDisplay)
@@ -57,7 +61,10 @@ export const Content = ()=>{
             }}
         >
                 <Button
-                    type="submit"
+                    onClick={(e)=>{
+                        e.preventDefault
+                        setIsOpen(true)
+                    }}
                     variant="contained"
                     color="primary"
                     sx={{
@@ -77,11 +84,14 @@ export const Content = ()=>{
                             justifyContent:'space-around',
                             alignItems:'center'
                         }}
-                    >
-                        <AddIcon/>
+                    >   
+                        <Add/>
                         New Project
                     </Typography>
                 </Button>
+                <Modal open={isOpen} >
+                    <Upload onClose={()=> setIsOpen(false)}/>
+                </Modal>
             <DisplayCard/>
         </Paper>
         </>

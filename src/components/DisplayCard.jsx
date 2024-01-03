@@ -1,7 +1,17 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material"
 import { DeleteOutlineOutlined, ModeEditOutlineOutlined, VisibilityOutlined } from "@mui/icons-material";
+import { useState } from "react";
+import { Edit } from "./Edit";
+import { Modal } from './Modal'
+import { Delete } from "./Delete";
+import { Hide } from "./Hide";
 
 export const DisplayCard = ()=>{
+
+    const [edit, setEdit] = useState(false)
+    const [remove, setRemove] = useState(false)
+    const [hide, setHide] = useState(false)
+    
     return(
         <>
         <Card
@@ -30,6 +40,10 @@ export const DisplayCard = ()=>{
                 }}
             >
                 <Button
+                    onClick={(e)=>{
+                        e.preventDefault,
+                        setEdit(true)
+                    }}
                     size="small"
                 >
                     <Typography
@@ -43,7 +57,14 @@ export const DisplayCard = ()=>{
                         Edit
                     </Typography>
                 </Button>
+                <Modal open={edit}>
+                        <Edit onClose={()=> setEdit(false)}/>
+                </Modal>
                 <Button
+                    onClick={(e)=>{
+                        e.preventDefault,
+                        setRemove(true)
+                    }}
                     size="small"
                 >
                     <Typography
@@ -57,7 +78,14 @@ export const DisplayCard = ()=>{
                         Delete
                     </Typography>
                 </Button>
+                <Modal open={remove}>
+                        <Delete onClose={()=> setRemove(false)}/>
+                </Modal>
                 <Button
+                    onClick={(e)=>{
+                        e.preventDefault,
+                        setHide(true)
+                    }}
                     size="small"
                 >
                     <Typography
@@ -71,6 +99,9 @@ export const DisplayCard = ()=>{
                         Hide
                     </Typography>
                 </Button>
+                <Modal open={hide}>
+                        <Hide onClose={()=> setHide(false)}/>
+                </Modal>
             </CardActions>
         </Card>
             
