@@ -7,7 +7,10 @@ export const Delete = ({onClose})=>{
             <Paper
                 elevation={0}
                 sx={{
-                    width:'30rem',
+                    width:{
+                        xs:'100vw',
+                        md:'30rem'
+                    },
                     height:'15rem',
                     p:'2.5rem'
                 }}
@@ -28,7 +31,7 @@ export const Delete = ({onClose})=>{
                 <Stack
                     direction={'row'}
                     justifyContent={'center'}
-                    spacing={15}
+                    spacing={10}
                     mt={8}
                 >
                     <Button
