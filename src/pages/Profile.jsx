@@ -5,6 +5,7 @@ import { Content } from '../components/Content'
 
 
 export const Profile = ()=>  {
+    
     return(
         <>
             <Navbar/>

@@ -1,9 +1,20 @@
 import { Typography, Button, Paper, Grid, TextField } from "@mui/material"
 import { Link } from "react-router-dom"
-
+import { useState } from "react"
+import { useRegister } from "../hooks/useRegister"
 
 
 export const Register = ()=> {
+    const [email, setEmail]=useState();
+    const [password, setPassword]=useState();
+    const { register, isLoading, error } = useRegister();
+
+    const handleSubmit = async (e)=>{
+        e.preventDefault();
+
+        await register(email, password)
+    }
+
     return(
        <>
         <Grid container direction={'row'}>
@@ -18,7 +29,10 @@ export const Register = ()=> {
                         justifyContent:'center',
                         alignItems:'center'
                     }}> 
-                    <form className="loginForm">
+                    <form
+                        className="loginForm"
+                        onSubmit={handleSubmit}
+                    >
                         <Typography
                             variant="h1"
                             align="center"
@@ -34,33 +48,14 @@ export const Register = ()=> {
                                 mt:1
                             }}
                         >
-                            Name
-                        </Typography>
-                        <TextField
-                            id="name"
-                            variant="outlined"
-                            type="email"
-                            required
-                            sx={{
-                            width:'17rem',
-                            '& .MuiInputBase-root':{
-                                height:'2rem'
-                            }
-                            }}
-                        />
-                        <Typography
-                            sx={{
-                                alignSelf:'flex-start',
-                                mt:1
-                            }}
-                        >
                             Email
                         </Typography>
                         <TextField
+                            onChange={(e)=> setEmail(e.target.value)}
+                            value={email}
                             id="email"
                             variant="outlined"
                             type="email"
-                            required
                             sx={{
                             width:'17rem',
                             '& .MuiInputBase-root':{
@@ -77,10 +72,11 @@ export const Register = ()=> {
                             Password
                         </Typography>
                         <TextField
+                            onChange={(e)=> setPassword(e.target.value)}
+                            value={password}
                             id="password"
                             variant="outlined"
                             type="password"
-                            required
                             sx={{
                             width:'17rem',
                             '& .MuiInputBase-root':{
@@ -89,7 +85,7 @@ export const Register = ()=> {
                             }}
                         />
                         <Button
-                            onClick={()=> console.log('Click!')}
+                            disabled={isLoading}
                             type="submit"
                             variant="contained"
                             color="primary"
@@ -117,6 +113,7 @@ export const Register = ()=> {
                                 Already have an account? Login
                             </Typography>
                         </Link>
+                        {error && <Typography variant="h2">{error}</Typography>}
                     </form>
                 </Paper>
             </Grid>

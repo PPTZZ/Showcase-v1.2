@@ -61,7 +61,7 @@ export const ForgotPass = ({onClose})=>{
                             Cancel
                         </Typography>
                     </Button>
-                    <Link to={'/profile'}>
+                    <Link to={'/'}>
                         <Button
                             variant="contained"
                             sx={{

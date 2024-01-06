@@ -8,6 +8,13 @@ import { Modal } from '../components/Modal';
 export const Login = ()=> {
 
     const [passModal, openPassModal] = useState(false);
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+
+    const handleSubmit = async (e)=>{
+        e.preventDefault();
+        console.log(email,password);
+    }
 
     
     return(
@@ -25,7 +32,10 @@ export const Login = ()=> {
                         alignItems:'center'
                         }}
                 > 
-                    <form className="loginForm">
+                    <form 
+                        className="loginForm"
+                        onSubmit={handleSubmit}
+                    >
                         <Typography
                             variant="h1"
                             align="center"
@@ -43,6 +53,8 @@ export const Login = ()=> {
                             Email
                         </Typography>
                         <TextField
+                            onChange={(e)=> setEmail(e.target.value)}
+                            value={email}
                             id="email"
                             variant="outlined"
                             type="email"
@@ -63,6 +75,8 @@ export const Login = ()=> {
                             Password
                         </Typography>
                         <TextField
+                            onChange={(e)=> setPassword(e.target.value)}
+                            value={password}
                             id="password"
                             variant="outlined"
                             type={'password'}
@@ -91,12 +105,8 @@ export const Login = ()=> {
                         <Modal open={passModal}>
                             <ForgotPass onClose={()=> openPassModal(false)}/>
                         </Modal>
-                        <Link
-                            to={'/profile'}
-                            style={{textDecoration:'none'}}
-                        >   
+  
                             <Button
-                                onClick={()=> console.log('Click!')}
                                 type="submit"
                                 variant="contained"
                                 color="primary"
@@ -110,7 +120,6 @@ export const Login = ()=> {
                                 Login
                             </Typography>
                             </Button>
-                        </Link>
                         <Link
                             to={'/register'}
                             style={{
