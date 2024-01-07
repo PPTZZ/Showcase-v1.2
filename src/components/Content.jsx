@@ -1,11 +1,12 @@
 import { Button, Modal, Paper, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import { Add } from "@mui/icons-material";
-import { useState } from "react";
-import { DisplayCard } from "./DisplayCard";
+import { useState,} from "react";
+import { CardList } from "./CardList";
 import { Upload } from './Upload';
 
 
 export const Content = ()=>{
+
 
     const [display, setDisplay] = useState('projects');
     const [isOpen, setIsOpen] = useState(false)
@@ -92,7 +93,7 @@ export const Content = ()=>{
                 <Modal open={isOpen} >
                     <Upload onClose={()=> setIsOpen(false)}/>
                 </Modal>
-            <DisplayCard/>
+                <CardList/>
         </Paper>
         </>
     )

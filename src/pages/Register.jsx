@@ -5,15 +5,15 @@ import { useRegister } from "../hooks/useRegister"
 
 
 export const Register = ()=> {
-    const [email, setEmail]=useState();
-    const [password, setPassword]=useState();
-    const { register, isLoading, error } = useRegister();
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const {signup, error, isLoading} = useRegister()
 
-    const handleSubmit = async (e)=>{
-        e.preventDefault();
+    const handleSubmit = async (e) => {
+    e.preventDefault()
 
-        await register(email, password)
-    }
+    await signup(email, password)
+  }
 
     return(
        <>
@@ -30,7 +30,7 @@ export const Register = ()=> {
                         alignItems:'center'
                     }}> 
                     <form
-                        className="loginForm"
+                        className="credentialsForm"
                         onSubmit={handleSubmit}
                     >
                         <Typography
@@ -48,11 +48,10 @@ export const Register = ()=> {
                                 mt:1
                             }}
                         >
-                            Email
+                            Email:
                         </Typography>
                         <TextField
                             onChange={(e)=> setEmail(e.target.value)}
-                            value={email}
                             id="email"
                             variant="outlined"
                             type="email"
@@ -69,11 +68,10 @@ export const Register = ()=> {
                                 mt:1
                             }}
                         >
-                            Password
+                            Password:
                         </Typography>
                         <TextField
                             onChange={(e)=> setPassword(e.target.value)}
-                            value={password}
                             id="password"
                             variant="outlined"
                             type="password"
@@ -98,7 +96,7 @@ export const Register = ()=> {
                             Register
                         </Button>
                         <Link 
-                            to={'/'} 
+                            to={'/login'} 
                             style={{
                                 alignSelf:'flex-start',
                                 textDecoration:'none'
@@ -113,7 +111,14 @@ export const Register = ()=> {
                                 Already have an account? Login
                             </Typography>
                         </Link>
-                        {error && <Typography variant="h2">{error}</Typography>}
+                        {error && <Typography 
+                            variant="h3"
+                            sx={{
+                                color:'red'
+                            }}
+                        >
+                            {error}
+                        </Typography>}
                     </form>
                 </Paper>
             </Grid>

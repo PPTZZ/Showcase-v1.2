@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { createTheme, ThemeProvider, responsiveFontSizes } from '@mui/material'
 import { App } from './App.jsx'
 import { AuthContextProvider } from './Context/AuthContext.jsx'
+import { PostsContextProvider } from './Context/PostsContext.jsx'
 import './index.css'
 
 
@@ -72,11 +73,13 @@ theme = responsiveFontSizes(theme)
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthContextProvider>
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ThemeProvider>
+      <PostsContextProvider>
+        <ThemeProvider theme={theme}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ThemeProvider>
+      </PostsContextProvider>
     </AuthContextProvider>
   </StrictMode>
 )

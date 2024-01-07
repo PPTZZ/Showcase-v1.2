@@ -1,10 +1,17 @@
 import { AppBar, Toolbar, IconButton, Typography, Box, Stack } from "@mui/material";
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-import { Link } from "react-router-dom"
 import logo from '/Images/logo.svg'
+import { useLogout } from "../hooks/useLogout";
 
 
 export const Navbar = ()=> {
+
+    const {logout} = useLogout();
+
+    const handleClick = ()=>{
+        logout()
+    }
+    
     return(
         <AppBar
             elevation={0}
@@ -31,17 +38,18 @@ export const Navbar = ()=> {
                     spacing={3}
                 >
                     <NotificationsOutlinedIcon/>
-                    <Link 
-                        to={'/'}
-                        style={{textDecoration:'none'}}
-                    >
                         <Typography
+                            onClick={handleClick}
                             color={'primary'}
                             fontWeight={'bold'}
+                            sx={{
+                                ":hover":{
+                                    cursor:'pointer'
+                                }
+                            }}
                         >
                         Log out
                         </Typography>
-                    </Link>
                 </Stack>
             </Toolbar>
         </AppBar>

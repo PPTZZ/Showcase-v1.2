@@ -3,9 +3,12 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { ForgotPass } from "../components/ForgotPass";
 import { Modal } from '../components/Modal';
+import { useLogin } from "../hooks/useLogin";
 
 
 export const Login = ()=> {
+
+    const {login, error, isLoading} = useLogin();
 
     const [passModal, openPassModal] = useState(false);
     const [email, setEmail] = useState();
@@ -13,7 +16,7 @@ export const Login = ()=> {
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        console.log(email,password);
+        await login(email, password)
     }
 
     
@@ -32,8 +35,8 @@ export const Login = ()=> {
                         alignItems:'center'
                         }}
                 > 
-                    <form 
-                        className="loginForm"
+                    <form
+                        className="credentialsForm"
                         onSubmit={handleSubmit}
                     >
                         <Typography
@@ -54,7 +57,6 @@ export const Login = ()=> {
                         </Typography>
                         <TextField
                             onChange={(e)=> setEmail(e.target.value)}
-                            value={email}
                             id="email"
                             variant="outlined"
                             type="email"
@@ -76,7 +78,6 @@ export const Login = ()=> {
                         </Typography>
                         <TextField
                             onChange={(e)=> setPassword(e.target.value)}
-                            value={password}
                             id="password"
                             variant="outlined"
                             type={'password'}
@@ -107,6 +108,7 @@ export const Login = ()=> {
                         </Modal>
   
                             <Button
+                                disabled={isLoading}
                                 type="submit"
                                 variant="contained"
                                 color="primary"
@@ -136,6 +138,14 @@ export const Login = ()=> {
                                 Don’t have an account? Sign up
                             </Typography>
                         </Link>
+                        {error && <Typography
+                            variant="h3"
+                            sx={{
+                                color:'red'
+                            }}
+                        >
+                            {error}
+                        </Typography>}
                     </form>
                 </Paper>
             </Grid>

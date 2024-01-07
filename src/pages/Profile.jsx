@@ -5,7 +5,7 @@ import { Content } from '../components/Content'
 
 
 export const Profile = ()=>  {
-    
+
     return(
         <>
             <Navbar/>
@@ -23,7 +23,7 @@ export const Profile = ()=>  {
                     <Sidebar/>
                 </Grid>
                 <Grid item xs={12} s={12} md={10.4}>
-                        <Content/>
+                    <Content/>
                 </Grid>
             </Grid>
 

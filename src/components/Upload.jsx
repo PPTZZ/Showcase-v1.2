@@ -1,13 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import { Button, FormLabel, Input, Paper, Stack, TextField, Typography } from "@mui/material"
 import { FileUploadOutlined } from "@mui/icons-material";
+import { usePostsContext } from "../hooks/usePostsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export const Upload = ({onClose})=> {
 
     const [file, setFile] = useState();
     const [preview, setPreview] = useState();
+    const [title, setTitle] = useState('');
+    const [descr, setDescr] = useState('');
+    const [link, setLink] = useState('');
+    const [error, setError] = useState(null);
+
     const fileInputRef = useRef();
 
+    const { dispatch } = usePostsContext();
+    const { user } = useAuthContext();
 
     useEffect(()=> {
         if (file){
@@ -21,10 +30,47 @@ export const Upload = ({onClose})=> {
         }
     }, [file])
 
-
     const handleChange = (e)=> {
         setFile(e.target.files[0]);
     }
+
+    const handleSubmit = async (e)=>{
+        e.preventDefault()
+
+        if(!user){
+            setError('You must be Logged in')
+            return
+        }
+
+        const post = { title, description: descr, link}
+        const response = await fetch('http://localhost:5000/api/posts',{
+            method: 'POST',
+            body: JSON.stringify(post),
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Bearere ${user.token}`
+            }
+        })
+        const json = await response.json()
+
+        if(!response.ok){
+            setError(json.error)
+        }
+        if(response.ok){
+            setTitle('')
+            setDescr('')
+            setLink('')
+            setError(null);
+            dispatch({type:'CREATE_POST', payload: json})
+            console.log({message: 'post added sucessfully'})
+        }
+        if(error){
+            console.log(error)
+        }
+        onClose();
+    } 
+
+
 
     return(
         <div 
@@ -47,6 +93,7 @@ export const Upload = ({onClose})=> {
                 }}
             >   
                 
+                <form onSubmit={handleSubmit}>
                 <Paper
                     elevation={0}
                     sx={{
@@ -115,13 +162,13 @@ export const Upload = ({onClose})=> {
                 </Paper>
                 <Typography
                     sx={{
-                        position:'relative',
-                        right:'38%'
+                        alignSelf:'flex-start'
                     }}
                 >
-                    Title</Typography>
+                    Title:
+                </Typography>
                 <TextField
-
+                    onChange={(e)=>setTitle(e.target.value)}
                     sx={{
                         width:'26rem',
                         '& .MuiInputBase-root':{
@@ -133,12 +180,13 @@ export const Upload = ({onClose})=> {
                 <Typography
                     sx={{
                         mt:1,
-                        position:'relative',
-                        right:'33%'
+                        alignSelf:'flex-start'
                     }}
                 >
-                    Description</Typography>
+                    Description:
+                </Typography>
                 <TextField
+                    onChange={(e)=>setDescr(e.target.value)}
                     multiline
                     rows={6}
                     sx={{
@@ -149,12 +197,13 @@ export const Upload = ({onClose})=> {
                 <Typography
                     sx={{
                         mt:1,
-                        position:'relative',
-                        right:'38%'
+                        alignSelf:'flex-start'
                     }}
                 >
-                    Link</Typography>
+                    Link:
+                </Typography>
                 <TextField
+                    onChange={(e)=>setLink(e.target.value)}
                     sx={{
                         width:'26rem',
                         '& .MuiInputBase-root':{
@@ -168,7 +217,7 @@ export const Upload = ({onClose})=> {
                     spacing={13}
                     mt={5}
                 >
-                    <Button 
+                    <Button
                         onClick={onClose}
                         variant="outlined"
                         color="primary"
@@ -183,7 +232,6 @@ export const Upload = ({onClose})=> {
                         </Typography>
                     </Button>
                     <Button
-                        onClick={()=>console.log('Submited')} 
                         variant="contained"
                         color="primary"
                         type="submit"
@@ -198,6 +246,7 @@ export const Upload = ({onClose})=> {
                         </Typography>   
                     </Button>
                 </Stack>
+                </form>
             </Paper>
         </div>
     )     

@@ -1,13 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import { Button, FormLabel, Input, Paper, Stack, TextField, Typography } from "@mui/material"
 import { FileUploadOutlined } from "@mui/icons-material";
+import { usePostsContext } from "../hooks/usePostsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export const Edit = ({onClose})=> {
 
     const [file, setFile] = useState();
     const [preview, setPreview] = useState();
+    const [title, setTitle] = useState('');
+    const [descr, setDescr] = useState('');
+    const [link, setLink] = useState('');
+    const [error, setError] = useState(null);
+    
+    const { dispatch } = usePostsContext();
+    const { user } = useAuthContext();
+    
     const fileInputRef = useRef();
-
 
     useEffect(()=> {
         if (file){
@@ -26,6 +35,42 @@ export const Edit = ({onClose})=> {
         setFile(e.target.files[0]);
     }
 
+    const handleSubmit = async (e)=>{
+        e.preventDefault()
+
+        if(!user){
+            setError('You must be Logged in')
+            return
+        }
+
+        const post = { title, description: descr, link}
+        const response = await fetch('http://localhost:5000/api/posts',{
+            method: 'PATCH',
+            body: JSON.stringify(post),
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Bearere ${user.token}`
+            }
+        })
+        const json = await response.json()
+
+        if(!response.ok){
+            setError(json.error)
+        }
+        if(response.ok){
+            setTitle('')
+            setDescr('')
+            setLink('')
+            setError(null);
+            dispatch({type:'EDIT_POST', payload: json})
+            console.log({message: 'post added sucessfully'})
+        }
+        if(error){
+            console.log(error)
+        }
+        onClose();
+    }
+
     return(
             <Paper
                 sx={{
@@ -37,7 +82,9 @@ export const Edit = ({onClose})=> {
                     alignItems:'center'
                 }}
             >   
-                
+                <form
+                    onSubmit={handleSubmit}
+                >
                 <Paper
                     elevation={0}
                     sx={{
@@ -174,7 +221,7 @@ export const Edit = ({onClose})=> {
                         </Typography>
                     </Button>
                     <Button
-                        onClick={()=>console.log('Submited')} 
+                        onClick={handleSubmit} 
                         variant="contained"
                         color="primary"
                         type="submit"
@@ -189,6 +236,7 @@ export const Edit = ({onClose})=> {
                         </Typography>   
                     </Button>
                 </Stack>
+                </form>
             </Paper>
 
     )     

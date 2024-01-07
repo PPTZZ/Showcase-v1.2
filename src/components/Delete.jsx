@@ -2,6 +2,8 @@ import { Button, Paper, Stack, Typography } from "@mui/material"
 
 
 export const Delete = ({onClose})=>{
+
+
     return(
         <>
             <Paper
