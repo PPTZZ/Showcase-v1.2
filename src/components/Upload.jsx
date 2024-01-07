@@ -30,9 +30,6 @@ export const Upload = ({onClose})=> {
         }
     }, [file])
 
-    const handleChange = (e)=> {
-        setFile(e.target.files[0]);
-    }
 
     const handleSubmit = async (e)=>{
         e.preventDefault()
@@ -41,8 +38,8 @@ export const Upload = ({onClose})=> {
             setError('You must be Logged in')
             return
         }
-
-        const post = { title, description: descr, link}
+        const image = await JSON.stringify(file);
+        const post = { title, description: descr, link, image}
         const response = await fetch('http://localhost:5000/api/posts',{
             method: 'POST',
             body: JSON.stringify(post),
@@ -62,7 +59,7 @@ export const Upload = ({onClose})=> {
             setLink('')
             setError(null);
             dispatch({type:'CREATE_POST', payload: json})
-            console.log({message: 'post added sucessfully'})
+            console.log({message: 'post added sucessfully', json})
         }
         if(error){
             console.log(error)
@@ -110,7 +107,7 @@ export const Upload = ({onClose})=> {
                         }}
                         type="file"
                         id="upload"
-                        onChange={handleChange}
+                        onChange={(e)=>setFile(e.target.files[0])}
                         ref={fileInputRef}
                         sx={{
                             display:'none'
